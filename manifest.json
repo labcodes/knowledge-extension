@@ -45,8 +45,9 @@
 
 	"permissions": [
 		"activeTab",
-		"notifications"
+		"notifications",
+    "https://cdnjs.cloudflare.com/ajax/libs/bulma/*"
 	],
 
-	"homepage_url": "https://github.com/labcodes",
+	"homepage_url": "https://github.com/labcodes"
 }
