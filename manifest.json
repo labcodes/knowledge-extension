@@ -47,8 +47,8 @@
 		"activeTab",
 		"notifications",
     "https://cdnjs.cloudflare.com/ajax/libs/bulma",
-    "https://jsonplaceholder.typicode.com/posts"
+    "https://link-notifications.herokuapp.com/api/"
 	],
 
-	"homepage_url": "https://github.com/labcodes"
+	"homepage_url": "http://labcodes.com.br"
 }
