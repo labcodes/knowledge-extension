@@ -23,6 +23,16 @@
 		}
 	},
 
+	"omnibox": {
+		"keyword" : "labKnowledge"
+	},
+
+	"background" : {
+		"scripts": [
+			"./src/js/background.js"
+		]
+	},
+
 	"permissions": [
 		"activeTab",
 		"notifications"
