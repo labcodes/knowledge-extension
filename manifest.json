@@ -1,0 +1,30 @@
+{
+	"manifest_version": 2,
+
+	"name": "Knowledge Extension",
+	"description": "A project made by Labcodes Team.",
+	"version": "1.0",
+
+	"browser_action": {
+		"default_icon": "./src/images/icon.png",
+		"default_popup": "./index.html",
+		"default_title": "It's we!"
+	},
+
+	"commands": {
+		"toggle-feature-foo": {
+			"suggested_key": {
+				 "default": "Ctrl+Shift+K",
+				 "windows": "Ctrl+Shift+K",
+				 "mac": "Ctrl+Shift+K",
+				 "linux": "Ctrl+Shift+K"
+			},
+			"description": "Toogle Me"
+		}
+	},
+
+	"permissions": [
+		"activeTab",
+		"notifications"
+	]
+}

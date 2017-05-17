@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
+
+	<style>
+		.form { margin-top: 20px; }
+	</style>
+
+	<title>Knowledge Extension</title>
+</head>
+<body>
+	<section class="section">
+		<main class="container">
+			<div class="heading">
+        <h1 class="title">Knowledge</h1>
+        <h2 class="subtitle">
+        	Isn't a <strong>pocket</strong>, but it will be better.
+        </h2>
+      </div>
+		</main>
+
+		<aside class="container">
+			<form id="knForm" class="form">
+				<div class="field">
+				  <label class="label" for="linkTags">Tags</label>
+				  <p class="control">
+				    <input
+				    	id="linkTags"
+				    	class="input"
+				    	type="text"
+				    	placeholder="Should be split by comma">
+				  </p>
+				</div>
+
+				<div class="field">
+					<label class="label"></label>
+					<p class="control">
+						<button type="submit" class="button is-primary">
+							Post link
+						</button>
+					</p>
+				</div>
+			</form>
+		</aside>
+	</section>
+
+	<script src="./src/js/main.js"></script>
+</body>
+</html>
