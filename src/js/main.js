@@ -5,10 +5,14 @@
 	const form = document.getElementById('knForm');
 	const input = document.querySelector('.input');
 
-	function sendData(obj) {
+	function sendData(dataObj) {
     let xhr = new XMLHttpRequest();
 
-    xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts', true);
+    xhr.open('POST', 'https://jsonplaceholder.typicode.com/posts');
+
+    xhr.setRequestHeader('accept', 'application/json');
+    xhr.setRequestHeader('content-type', 'application/json');
+    xhr.setRequestHeader('Authorization', 'Token <your-token-here>');
 
     xhr.onreadystatechange = function() {
       switch(xhr.readyState) {
@@ -35,7 +39,7 @@
       }
     };
 
-    xhr.send();
+    xhr.send(dataObj);
 	}
 
 	function getTags(tabUrl) {
