@@ -5,14 +5,47 @@
 	const form = document.getElementById('knForm');
 	const input = document.querySelector('.input');
 
+  // ====
+
+  function notification(obj) {
+    let notificationId = new Date().getTime();
+
+    let options = {
+      type: 'basic',
+      title: obj.title,
+      message: obj.message,
+      iconUrl: 'url_to_small_icon',
+      imageUrl: 'url_to_preview_image'
+    };
+
+    // chrome.notifications.getPermissionLevel
+
+    chrome.notifications.create(notificationId, options, (id) => {
+      console.warn('DALE!', id);
+    });
+  }
+
+  function _handleResponse(obj) {
+    input.value = '';
+    button.classList.remove('is-loading');
+
+    notification({
+      title: 'Success!',
+      message: 'Seu link foi postado com sucesso.'
+    });
+  }
+
 	function sendData(dataObj) {
+    const myToken = '2e0ccdc6761f587b795369445571b6dafc44db05';
+    dataObj.title = 'CHROME EXTENSIONS <3';
+
     let xhr = new XMLHttpRequest();
 
-    xhr.open('POST', 'https://jsonplaceholder.typicode.com/posts');
+    xhr.open('POST', 'https://link-notifications.herokuapp.com/api/links/create/', true);
 
     xhr.setRequestHeader('accept', 'application/json');
     xhr.setRequestHeader('content-type', 'application/json');
-    xhr.setRequestHeader('Authorization', 'Token <your-token-here>');
+    xhr.setRequestHeader('Authorization', `Token ${myToken}`);
 
     xhr.onreadystatechange = function() {
       switch(xhr.readyState) {
@@ -34,23 +67,23 @@
 
         case 4:
           console.warn('Operação concluída.');
-          console.warn(JSON.parse(xhr.responseText));
+          _handleResponse(JSON.parse(xhr.responseText));
         break;
       }
     };
 
-    xhr.send(dataObj);
+    xhr.send(JSON.stringify(dataObj));
 	}
 
-	function getTags(tabUrl) {
+	function getTags(url) {
 		let tags;
 
 		if (input.value) {
-			tags = input.value.split(',');
+			tags = input.value.split(',').toString();
 		}
 
 		sendData({
-			tabUrl,
+			url,
 			tags
 		});
 	}
@@ -61,17 +94,21 @@
 		button.classList.add('is-loading');
 
 		if (chrome.tabs) {
-			chrome.tabs.query({ active: true }, (tab) => {
-				getTags(tab[0].url);
+			chrome.tabs.query({ active: true }, (tabs) => {
+        tabs.forEach(item => {
+          if (item.url) {
+            getTags(item.url);
+          }
+        })
 			});
 		}
 	}
 
-	// ====
-
 	function handleCommands(command) {
 		console.warn(command);
 	}
+
+  // ====
 
 	document.addEventListener('DOMContentLoaded', () => {
 		form.addEventListener('submit', handleSubmitForm, false);
