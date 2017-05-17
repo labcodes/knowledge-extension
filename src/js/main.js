@@ -34,7 +34,18 @@
 		}
 	}
 
+	// ====
+
+	function handleCommands(command) {
+		console.warn(command);
+	}
+
 	document.addEventListener('DOMContentLoaded', () => {
 		form.addEventListener('submit', handleSubmitForm, false);
+
+		if (chrome.commands) {
+			chrome.commands.onCommand.addListener(handleCommands);
+		}
+
 	}, false);
 })();
