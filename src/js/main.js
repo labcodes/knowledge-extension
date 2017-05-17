@@ -6,7 +6,36 @@
 	const input = document.querySelector('.input');
 
 	function sendData(obj) {
-		console.warn('The data is:', obj);
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts', true);
+
+    xhr.onreadystatechange = function() {
+      switch(xhr.readyState) {
+        case 0:
+          console.warn('Um cliente foi criado. Mas o método open()  não foi chamado ainda.');
+        break;
+
+        case 1:
+          console.warn('O método open() foi chamado.');
+        break;
+
+        case 2:
+          console.warn('o método send() foi chamado e os cabeçalhos e status estão disponíveis .');
+        break;
+
+        case 3:
+          console.warn('Baixando e responseText contem os dados parciais.');
+        break;
+
+        case 4:
+          console.warn('Operação concluída.');
+          console.warn(JSON.parse(xhr.responseText));
+        break;
+      }
+    };
+
+    xhr.send();
 	}
 
 	function getTags(tabUrl) {
@@ -46,6 +75,5 @@
 		if (chrome.commands) {
 			chrome.commands.onCommand.addListener(handleCommands);
 		}
-
 	}, false);
 })();

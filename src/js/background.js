@@ -1,9 +1,12 @@
 (function() {
 	'use strict';
 
-	function handleInputEntered(text) {
-		alert('inputEntered: ' + text);
-	};
+  function handleInputEntered(text) {
+    alert('inputEntered: ' + text);
+  }
 
-	chrome.omnibox.onInputEntered.addListener(handleInputEntered);
+  // ====
+
+  // Omni handle
+  chrome.omnibox.onInputEntered.addListener(handleInputEntered);
 })();
