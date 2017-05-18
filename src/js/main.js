@@ -8,20 +8,17 @@
   // ====
 
   function notification(obj) {
-    let notificationId = new Date().getTime();
+    let notificationId = new Date().getTime().toString();
 
     let options = {
       type: 'basic',
       title: obj.title,
       message: obj.message,
-      iconUrl: 'url_to_small_icon',
-      imageUrl: 'url_to_preview_image'
+      iconUrl: './src/images/icon128.png'
     };
 
-    // chrome.notifications.getPermissionLevel
-
     chrome.notifications.create(notificationId, options, (id) => {
-      console.warn('DALE!', id);
+      console.warn('Notification ID:', id);
     });
   }
 
