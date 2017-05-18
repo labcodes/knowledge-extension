@@ -45,8 +45,10 @@
 
 	"permissions": [
 		"activeTab",
-		"notifications"
+		"notifications",
+    "https://cdnjs.cloudflare.com/ajax/libs/bulma",
+    "https://link-notifications.herokuapp.com/api/"
 	],
 
-	"homepage_url": "https://github.com/labcodes",
+	"homepage_url": "http://labcodes.com.br"
 }
