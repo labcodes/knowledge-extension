@@ -28,12 +28,38 @@
 		<aside class="container">
       <form id="formLogin" class="form">
         <div class="field">
+          <label class="label" for="email">E-mail</label>
+          <p class="control">
+            <input
+              id="email"
+              class="input"
+              type="email"
+              placeholder="example@email.com">
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label" for="password">Password</label>
+          <p class="control">
+            <input
+              id="password"
+              class="input"
+              type="password"
+              placeholder="******">
+          </p>
+        </div>
+
+        <div class="field">
           <label class="label"></label>
           <p class="control">
-            <button id="btn-login" class="button is-primary">
+            <button type="submit" id="btn-login" class="button is-primary">
               Login
             </button>
           </p>
+        </div>
+
+        <div class="field">
+          <div id="error" class="notification is-danger is-hidden"></div>
         </div>
       </form>
 
