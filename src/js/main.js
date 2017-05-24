@@ -2,8 +2,8 @@
 	'use strict';
 
 	const button = document.querySelector('button[type="submit"]');
-	const form = document.getElementById('knForm');
-	const input = document.querySelector('.input');
+	const form = document.getElementById('formTags');
+  const input = document.querySelector('.input');
 
   // ====
 

@@ -3,7 +3,7 @@
 
 	"name": "Knowledge Extension",
 	"description": "A project made by Labcodes Team.",
-	"version": "1.0",
+	"version": "2.0",
 
 	"icons": {
 		"16": "./src/images/icon16.png",

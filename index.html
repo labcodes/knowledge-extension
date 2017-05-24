@@ -7,6 +7,9 @@
 
 	<style>
 		.form { margin-top: 20px; }
+    .is-hidden {
+      visibility: hidden;
+    }
 	</style>
 
 	<title>Knowledge Extension</title>
@@ -23,7 +26,18 @@
 		</main>
 
 		<aside class="container">
-			<form id="knForm" class="form">
+      <form id="formLogin" class="form">
+        <div class="field">
+          <label class="label"></label>
+          <p class="control">
+            <button id="btn-login" class="button is-primary">
+              Login
+            </button>
+          </p>
+        </div>
+      </form>
+
+      <form id="formTags" class="form is-hidden">
 				<div class="field">
 				  <label class="label" for="linkTags">Tags</label>
 				  <p class="control">
@@ -47,6 +61,7 @@
 		</aside>
 	</section>
 
+  <script src="./src/js/login.js"></script>
 	<script src="./src/js/main.js"></script>
 </body>
 </html>
