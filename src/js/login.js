@@ -6,12 +6,79 @@
   const formLogin = document.querySelector('#formLogin');
   const formTags = document.querySelector('#formTags');
 
-  loginBtn.addEventListener('click', (evt) => {
-    evt.preventDefault();
+  const email = document.querySelector('#email');
+  const password = document.querySelector('#password');
 
+  const error = document.querySelector('#error');
+
+  // ====
+
+  function _displayTags() {
     formLogin.classList.add('is-hidden');
     formTags.classList.remove('is-hidden');
+  }
 
-    console.warn('DALE PAPAI!');
-  }, false)
+  function _handleError(msg) {
+    email.value = '';
+    password.value = '';
+
+    loginBtn.classList.remove('is-loading');
+    error.classList.remove('is-hidden');
+
+    error.innerHTML = msg;
+  }
+
+  function _handleLoginApi(obj) {
+    if (obj.auth_token) {
+      localStorage.setItem('kn_ext', obj.auth_token);
+      _displayTags();
+    } else {
+      _handleError(obj.non_field_errors[0]);
+    }
+  }
+
+  function _handleLogin(userObj) {
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('POST', 'https://link-notifications.herokuapp.com/api/auth/login/', true);
+
+    xhr.setRequestHeader('accept', 'application/json');
+    xhr.setRequestHeader('content-type', 'application/json');
+
+    xhr.onreadystatechange = function() {
+      switch(xhr.readyState) {
+        case 4:
+          _handleLoginApi(JSON.parse(xhr.responseText));
+        break;
+      }
+    };
+
+    xhr.send(JSON.stringify(userObj));
+  }
+
+  function handleForm(evt) {
+    evt.preventDefault();
+
+    if (email.value && password.value) {
+      loginBtn.classList.add('is-loading');
+
+      let obj = {
+        username: email.value,
+        password: password.value
+      };
+
+      _handleLogin(obj);
+    }
+
+  }
+
+  // ====
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('kn_ext')) {
+      _displayTags();
+    }
+
+    formLogin.addEventListener('submit', handleForm, false);
+  }, false);
 })();

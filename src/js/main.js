@@ -3,7 +3,7 @@
 
 	const button = document.querySelector('button[type="submit"]');
 	const form = document.getElementById('formTags');
-  const input = document.querySelector('.input');
+  const input = document.querySelector('#linkTags');
 
   // ====
 
@@ -33,7 +33,7 @@
   }
 
 	function sendData(dataObj) {
-    const myToken = '2e0ccdc6761f587b795369445571b6dafc44db05';
+    const myToken = localStorage.getItem('kn_ext');
     dataObj.title = 'CHROME EXTENSIONS <3';
 
     let xhr = new XMLHttpRequest();
@@ -46,24 +46,7 @@
 
     xhr.onreadystatechange = function() {
       switch(xhr.readyState) {
-        case 0:
-          console.warn('Um cliente foi criado. Mas o método open()  não foi chamado ainda.');
-        break;
-
-        case 1:
-          console.warn('O método open() foi chamado.');
-        break;
-
-        case 2:
-          console.warn('o método send() foi chamado e os cabeçalhos e status estão disponíveis .');
-        break;
-
-        case 3:
-          console.warn('Baixando e responseText contem os dados parciais.');
-        break;
-
         case 4:
-          console.warn('Operação concluída.');
           _handleResponse(JSON.parse(xhr.responseText));
         break;
       }
