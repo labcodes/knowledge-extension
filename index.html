@@ -3,13 +3,21 @@
 <head>
 	<meta charset="UTF-8">
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
+  <link rel="shortcut icon" href="http://www.labcodes.com.br/static/core/imgs/favicon.png">
 
-	<style>
-		.form { margin-top: 20px; }
-	</style>
+	<title>
+    Labcodes | Knowledge Extension
+  </title>
 
-	<title>Knowledge Extension</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
+
+  <style>
+    .form { margin-top: 20px; }
+    .is-hidden {
+      visibility: hidden;
+    }
+  </style>
 </head>
 <body>
 	<section class="section">
@@ -23,7 +31,44 @@
 		</main>
 
 		<aside class="container">
-			<form id="knForm" class="form">
+      <form id="formLogin" class="form">
+        <div class="field">
+          <label class="label" for="email">E-mail</label>
+          <p class="control">
+            <input
+              id="email"
+              class="input"
+              type="email"
+              placeholder="example@email.com">
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label" for="password">Password</label>
+          <p class="control">
+            <input
+              id="password"
+              class="input"
+              type="password"
+              placeholder="******">
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label"></label>
+          <p class="control">
+            <button type="submit" id="btn-login" class="button is-primary">
+              Login
+            </button>
+          </p>
+        </div>
+
+        <div class="field">
+          <div id="error" class="notification is-danger is-hidden"></div>
+        </div>
+      </form>
+
+      <form id="formTags" class="form is-hidden">
 				<div class="field">
 				  <label class="label" for="linkTags">Tags</label>
 				  <p class="control">
@@ -38,7 +83,11 @@
 				<div class="field">
 					<label class="label"></label>
 					<p class="control">
-						<button type="submit" class="button is-primary">
+						<button
+              type="submit"
+              id="postLink"
+              class="button is-primary">
+
 							Post link
 						</button>
 					</p>
@@ -47,6 +96,7 @@
 		</aside>
 	</section>
 
+  <script src="./src/js/login.js"></script>
 	<script src="./src/js/main.js"></script>
 </body>
 </html>

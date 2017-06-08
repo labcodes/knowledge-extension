@@ -1,24 +1,53 @@
 (function() {
 	'use strict';
 
-	const button = document.querySelector('button[type="submit"]');
-	const form = document.getElementById('knForm');
-	const input = document.querySelector('.input');
+	const button = document.querySelector('#postLink');
+	const form = document.getElementById('formTags');
+  const input = document.querySelector('#linkTags');
 
   // ====
 
+  function _shareWithFacebook(link) {
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${link}`;
+    window.open(url, '_blank');
+  }
+
+  function _shareWithTwitter(link) {
+    const url = `https://twitter.com/intent/tweet?text=${link}`;
+    window.open(url, '_blank');
+  }
+
   function notification(obj) {
     let notificationId = new Date().getTime().toString();
+    const linkUrl = obj.url;
 
     let options = {
       type: 'basic',
-      title: obj.title,
-      message: obj.message,
-      iconUrl: './src/images/icon128.png'
+      title: 'Link postado com sucessso!',
+      message: obj.title,
+      iconUrl: './src/images/icon128.png',
+      buttons: [
+        {
+          title: 'I want to share with Facebook',
+          iconUrl: './src/images/fbIcon.svg'
+        },
+        {
+          title: 'I want to share with Twitter',
+          iconUrl: './src/images/twIcon.svg'
+        },
+      ],
     };
 
-    chrome.notifications.create(notificationId, options, (id) => {
-      console.warn('Notification ID:', id);
+    chrome.notifications.create(notificationId, options);
+
+    chrome.notifications.onButtonClicked.addListener((notifId, btnIndex) => {
+      if (notifId === notificationId) {
+        if (btnIndex === 0) {
+          _shareWithFacebook(linkUrl);
+        } else {
+          _shareWithTwitter(linkUrl);
+        }
+      }
     });
   }
 
@@ -26,44 +55,23 @@
     input.value = '';
     button.classList.remove('is-loading');
 
-    notification({
-      title: 'Success!',
-      message: 'Seu link foi postado com sucesso.'
-    });
+    notification(obj);
   }
 
 	function sendData(dataObj) {
-    const myToken = '2e0ccdc6761f587b795369445571b6dafc44db05';
-    dataObj.title = 'CHROME EXTENSIONS <3';
+    const myToken = localStorage.getItem('kn_ext');
 
     let xhr = new XMLHttpRequest();
 
-    xhr.open('POST', 'https://link-notifications.herokuapp.com/api/links/create/', true);
+    xhr.open('POST', 'http://knowledge.labcodes.com.br/api/links/create/', true);
 
     xhr.setRequestHeader('accept', 'application/json');
     xhr.setRequestHeader('content-type', 'application/json');
     xhr.setRequestHeader('Authorization', `Token ${myToken}`);
 
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = () => {
       switch(xhr.readyState) {
-        case 0:
-          console.warn('Um cliente foi criado. Mas o método open()  não foi chamado ainda.');
-        break;
-
-        case 1:
-          console.warn('O método open() foi chamado.');
-        break;
-
-        case 2:
-          console.warn('o método send() foi chamado e os cabeçalhos e status estão disponíveis .');
-        break;
-
-        case 3:
-          console.warn('Baixando e responseText contem os dados parciais.');
-        break;
-
         case 4:
-          console.warn('Operação concluída.');
           _handleResponse(JSON.parse(xhr.responseText));
         break;
       }
