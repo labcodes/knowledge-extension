@@ -13,7 +13,7 @@
 
   // ====
 
-  function _displayTags() {
+  function _hideFormLogin() {
     formLogin.classList.add('is-hidden');
     formTags.classList.remove('is-hidden');
   }
@@ -31,7 +31,7 @@
   function _handleLoginApi(obj) {
     if (obj.auth_token) {
       localStorage.setItem('kn_ext', obj.auth_token);
-      _displayTags();
+      _hideFormLogin();
     } else {
       _handleError(obj.non_field_errors[0]);
     }
@@ -40,7 +40,7 @@
   function _handleLogin(userObj) {
     let xhr = new XMLHttpRequest();
 
-    xhr.open('POST', 'https://link-notifications.herokuapp.com/api/auth/login/', true);
+    xhr.open('POST', 'http://knowledge.labcodes.com.br/api/auth/login/', true);
 
     xhr.setRequestHeader('accept', 'application/json');
     xhr.setRequestHeader('content-type', 'application/json');
@@ -69,14 +69,13 @@
 
       _handleLogin(obj);
     }
-
   }
 
   // ====
 
   document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('kn_ext')) {
-      _displayTags();
+      _hideFormLogin();
     }
 
     formLogin.addEventListener('submit', handleForm, false);
