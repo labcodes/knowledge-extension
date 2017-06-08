@@ -29,11 +29,11 @@
       buttons: [
         {
           title: 'I want to share with Facebook',
-          // iconUrl: './src/images/fbIcon.png'
+          iconUrl: './src/images/fbIcon.svg'
         },
         {
           title: 'I want to share with Twitter',
-          // iconUrl: './src/images/twIcon.png'
+          iconUrl: './src/images/twIcon.svg'
         },
       ],
     };
