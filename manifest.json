@@ -3,7 +3,7 @@
 
 	"name": "Knowledge Extension",
 	"description": "A project made by Labcodes Team.",
-	"version": "2.0",
+	"version": "2.1",
 
 	"icons": {
 		"16": "./src/images/icon16.png",
@@ -34,7 +34,7 @@
 	},
 
 	"omnibox": {
-		"keyword" : "labKnowledge"
+		"keyword" : "labk"
 	},
 
 	"background" : {
@@ -50,5 +50,5 @@
     "https://link-notifications.herokuapp.com/api/"
 	],
 
-	"homepage_url": "http://labcodes.com.br"
+	"homepage_url": "https://labcodes.com.br"
 }
