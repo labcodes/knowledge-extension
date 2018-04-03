@@ -34,7 +34,7 @@
 	},
 
 	"omnibox": {
-		"keyword" : "labKnowledge"
+		"keyword" : "labk"
 	},
 
 	"background" : {
@@ -50,5 +50,5 @@
     "https://link-notifications.herokuapp.com/api/"
 	],
 
-	"homepage_url": "http://labcodes.com.br"
+	"homepage_url": "https://labcodes.com.br"
 }
