@@ -40,7 +40,7 @@
   function _handleLogin(userObj) {
     let xhr = new XMLHttpRequest();
 
-    xhr.open('POST', 'http://knowledge.labcodes.com.br/api/auth/login/', true);
+    xhr.open('POST', 'https://knowledge.labcodes.com.br/api/auth/login/', true);
 
     xhr.setRequestHeader('accept', 'application/json');
     xhr.setRequestHeader('content-type', 'application/json');
@@ -78,6 +78,5 @@
       _hideFormLogin();
     }
 
-    formLogin.addEventListener('submit', handleForm, false);
-  }, false);
+    formLogin.addEventListener('submit', handleForm, false); }, false);
 })();

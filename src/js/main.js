@@ -63,7 +63,7 @@
 
     let xhr = new XMLHttpRequest();
 
-    xhr.open('POST', 'http://knowledge.labcodes.com.br/api/links/create/', true);
+    xhr.open('POST', 'https://knowledge.labcodes.com.br/api/links/create/', true);
 
     xhr.setRequestHeader('accept', 'application/json');
     xhr.setRequestHeader('content-type', 'application/json');
